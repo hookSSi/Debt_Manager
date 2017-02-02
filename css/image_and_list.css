@@ -1,0 +1,55 @@
+
+.image_list .listBox{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  align-content: center;
+}
+
+.inner{
+  background-color: powderblue;
+  display: flex;
+  border-bottom: 1px solid #ccc;
+  border-collapse: collapse;
+  overflow: hidden;
+  margin-left: 20%;
+  flex-basis: 100px;
+}
+
+.li-image{
+  vertical-align: middle;
+  flex-basis: 30%;
+  padding-right: 1em;
+}
+.li-image img{
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.li-text{
+  vertical-align: middle;
+  flex-basis: 60%;
+}
+.li-button{
+  vertical-align: middle;
+  flex-basis: 10%;
+}
+.li-head{
+  margin: 0;
+}
+.li-content{
+  margin: 0;
+}
+
+/*@media all and(min-width: 45em){
+  .image_list div{
+    float: left;
+    width: 50%;
+  }
+}
+
+@media all and (min-width: 75em){
+  .image_list div{
+    width: 33.33333%;
+  }
+}*/
