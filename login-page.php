@@ -1,6 +1,6 @@
 <? // 로그인 페이지 파일 ?>
 <?php
-	if(isset($_COOKIE['user_id']) && isset($_COOKIE['user_password']) && isset($_COOKIE['user_permission']))
+	if(isset($_COOKIE['user_name']) && isset($_COOKIE['user_password']) && isset($_COOKIE['user_permission']))
 	{
 		header("Location: ./client-page.php");
 	}

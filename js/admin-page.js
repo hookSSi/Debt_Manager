@@ -37,7 +37,7 @@ jQuery(document).ready(function(){
   jQuery("#reset_or_install").click(function(event){
       var result = confirm('데이터베이스 정보가 모두 리셋됩니다. 계속하겠습니까?');
       if(result){
-        var action = jQuery("#reset_or_install").attr('action');
+        var action = $("#reset_or_install").parent().attr('action');
         var form_data = {
           information: "admin informaion 확인"
         };
@@ -47,12 +47,17 @@ jQuery(document).ready(function(){
           data: form_data,
           success: function(response){
             if(response == 'success'){
+              $(".loader").remove();
               alert("데이터베이스가 리셋 되었습니다!");
             }
             else{
               alert("요청한 수행이 실패했습니다! 축하드립니다!");
             }
-          }
+          },
+          beforeSend: function(){
+            $("#reset_or_install").parent().append("<span class = 'loader loader-quart'></span>");
+          },
+          timeout:100000
         });
         return false;
       }

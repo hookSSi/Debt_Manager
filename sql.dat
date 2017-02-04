@@ -2,6 +2,8 @@ DROP TABLE IF EXISTS `Account`
 -----
 DROP TABLE IF EXISTS `UserInfo`
 -----
+DROP TABLE IF EXISTS `Group`
+-----
 DROP TABLE IF EXISTS `GroupInfo`
 -----
 CREATE TABLE IF NOT EXISTS `Account`(
@@ -21,13 +23,15 @@ id INT(10) UNSIGNED,
 firstname VARCHAR(30) NOT NULL,
 lastname VARCHAR(30) NOT NULL,
 position VARCHAR(30) DEFAULT 'user',
+money INT(10) DEFAULT '0',
 groupid INT(10) UNSIGNED
 )
 -----
-CREATE TABLE IF NOT EXISTS `GroupInfo`(
+CREATE TABLE IF NOT EXISTS `Group`(
 groupid INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 groupName VARCHAR(60) NOT NULL,
 peopleCount INT(10) UNSIGNED,
 create_date TIMESTAMP,
-UNIQUE(`groupid`)
+UNIQUE(`groupid`),
+UNIQUE(`groupName`)
 )

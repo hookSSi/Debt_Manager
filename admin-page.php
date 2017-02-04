@@ -2,16 +2,18 @@
 <?php
 	require_once('./class/db_class.php');
 	require_once('./class/account_class.php');
+	require_once('./class/group_class.php');
 
 	$database = new DB_Manager();
 	$AccountManager = new Account($database->pdo);
+	$GroupManager = new Group($database->pdo);
 
-	if(!isset($_COOKIE['user_id']) || !isset($_COOKIE['user_password']) || $_COOKIE['user_permission'] === 'normal')
+	if(!isset($_COOKIE['user_name']) || !isset($_COOKIE['user_password']) || $_COOKIE['user_permission'] === 'normal')
 	{
 		echo("
 		<script>
 			alert('당신은 권한이 없습니다!');
-			history.go(-1);
+			location.replace('./login-page.php');
 		</script>
 		");
 	}
@@ -23,7 +25,7 @@
 
   <!-- CSS 부분 -->
 	<style type = "text/css">
-		@import url("./css/admin-page.css?ver=1");
+		@import url("./css/admin-page.css");
 		@import url("./css/image_and_list.css");
 	</style>
 </head>
@@ -51,7 +53,7 @@
 	       <div class="page" id = "p2" style = "background: #FF5722;">
 	         <li class="icon fa fa-user-circle-o">
 						 <span class="title">회원 관리</span>
-						 <span class="hint">회원을 관리하는 메뉴입니다.</span>
+						 <span class="hint">회원을 추가 혹은 삭제합니다.</span>
 						 <span class="content">
 						 	<div id = "accountListbox">
 								<!-- 회원리스트 -->
@@ -59,22 +61,25 @@
 									<?php
 										$accountList = $AccountManager->GetAccountList();
 
-										foreach ($accountList as $row)
+										if($accountList !== false)
 										{
-											echo("
-													<div class = 'listBox'>
-														<div class = 'inner'>
-															<div class = 'li-image'><img src = '' alt = 'Image Not Found'></div>
-																<div class = 'li-text'>
-																	<h4 class = 'li-head'>{$row['username']}</h4>
-																	<p class = 'li-contents'>{$row['email']}</p>
-																</div>
-																<a href ='#' class = 'li-button'>
-																	x
-																</a>
+											foreach ($accountList as $row)
+											{
+												echo("
+														<div class = 'listBox'>
+															<div class = 'inner'>
+																<div class = 'li-image'><img src = '' alt = 'Image Not Found'></div>
+																	<div class = 'li-text'>
+																		<h4 class = 'li-head'>{$row['username']}</h4>
+																		<p class = 'li-contents'>{$row['email']}</p>
+																	</div>
+																	<a href ='#' class = 'li-button'>
+																		x
+																	</a>
+															</div>
 														</div>
-													</div>
-											");
+												");
+											}
 										}
 									 ?>
 								</div>
@@ -85,14 +90,46 @@
 	       <div class="page" id = "p3" style = "background: #593C1F;">
 	         <li class="icon fa fa-users">
 						 <span class="title">그룹 관리</span>
+						 <span class = "hint">그룹을 추가 혹은 삭제합니다.</span>
+						 <span class = "content">
+							 <div id = "accountListbox">
+ 								<!-- 회원리스트 -->
+ 								<div class = "image_list">
+ 									<?php
+ 										$groupList = $GroupManager->GetGroupList();
+
+										if($groupList !== false)
+										{
+											foreach ($groupList as $row)
+	 										{
+	 											echo("
+	 													<div class = 'listBox'>
+	 														<div class = 'inner'>
+	 															<div class = 'li-image'><img src = '' alt = 'Image Not Found'></div>
+	 																<div class = 'li-text'>
+	 																	<h4 class = 'li-head'>{$row['groupName']}</h4>
+	 																	<p class = 'li-contents'>현재 {$row['peopleCount']}명 존재합니다.</p>
+	 																</div>
+	 																<a href ='#' class = 'li-button'>
+	 																	x
+	 																</a>
+	 														</div>
+	 													</div>
+	 											");
+	 										}
+										}
+ 									 ?>
+ 								</div>
+ 							</div>
+						 </span>
 					 </li>
 	       </div>
 	       <div class="page" id = "p4" style = "background: deeppink;">
 	        <li class="icon fa fa-database">
 						<span class="title">데이터 베이스</span>
 						<span class="hint">
-							<form method= "POST" id = "reset_or_install" action = "./install-DB.php">
-							 <button type = "Button">Reset or Install</button>
+							<form method= "POST" action = "./install-DB.php">
+							 <button type = "Button" id = "reset_or_install">Reset or Install</button>
 						 	</form>
 						</span>
 					</li>
@@ -106,6 +143,7 @@
 	     </section>
      </div>
 	</div>
+
 	<!-- jQuery -->
   <script type = "text/javascript" src = "https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.0.min.js"></script>
 	<!-- font-awesome -->

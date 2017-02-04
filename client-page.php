@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <meta charset="utf-8" />
 <?php
-if(!isset($_COOKIE['user_id']) || !isset($_COOKIE['user_password']) || !isset($_COOKIE['user_permission'])) {
+if(!isset($_COOKIE['user_name']) || !isset($_COOKIE['user_password']) || !isset($_COOKIE['user_permission'])) {
 	header("Location: ./login-page.php");
 	exit;
 }
 
-$user_id = $_COOKIE['user_id'];
+$user_name = $_COOKIE['user_name'];
 $user_password = $_COOKIE['user_password'];
 ?>
 <html>
@@ -14,25 +14,26 @@ $user_password = $_COOKIE['user_password'];
 		<meta charset="utf-8">
 		<title>클라이언트 페이지</title>
 		<style>
-			@import url("./css/normal-style.css");
+			@import url("./css/client-page.css");
 		</style>
 	</head>
 	<body>
-		<div class="top_banner">
+		<div class="top-banner">
 			<?php
-				echo("<h1>어서오세요 ($user_id)님</h1>");
+				echo("<h1>어서오세요 ($user_name)님</h1>");
 			 ?>
 			 <a href = "./util/logout.php">로그아웃</a>
 		</div>
 		<nav class = "top-menu-list">
-
+			<a href="#"><i class = "fa fa-bars" aria-hidden="true"></i></a>
 		</nav>
 		<div class="wrapper">
 			<div class="container">
-					<form class="" action="index.html" method="post">
+					<form>
+						<h3 style="text-align:center;">한글 입력 불가능</h5>
 						<input type = "text" id = 'group_name' name = 'group_name' size = "25" maxlength = "25" placeholder = "그룹이름" />
-						<button type = "create">만들기</button>
-						<button type = "sign-in">참가</button>
+						<button type = "create" action = "./util/create-group.php" id = "create">만들기</button>
+						<button type = "sign-in" action = "./util/sign-in-group.php" id = "sign-in">참가</button>
 					</form>
 			</div>
 			<nav class = "bottom-menu-list">

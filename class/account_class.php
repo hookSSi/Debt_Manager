@@ -43,12 +43,8 @@ class Account{
       $stmt->bindparam(":password", $new_password);
       $stmt->bindparam(":email", $email);
       $stmt->execute();
-      $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
 
-      setcookie('user_id',$userRow['username'],time()+(86400*30));
-      setcookie('user_password',$userRow['password'],time()+(86400*30));
-
-      return $stmt;
+      return "success";
     }
     catch (Exception $e)
     {
@@ -69,7 +65,7 @@ class Account{
       {
         if(password_verify($password, $userRow['password']))
         {
-          setcookie('user_id',$userRow['username'],time()+(86400*30),'/');
+          setcookie('user_name',$userRow['username'],time()+(86400*30),'/');
           setcookie('user_password',$userRow['password'],time()+(86400*30),'/');
           setcookie('user_permission', $userRow['permission'],time()+(86400*30),'/');
           return $userRow['permission'];
@@ -100,7 +96,7 @@ class Account{
  // 로그아웃 함수
   public function logout()
   {
-    setcookie('user_id', '', time()-300,'/');
+    setcookie('user_name', '', time()-300,'/');
     setcookie('user_password', '', time()-300,'/');
     setcookie('user_permission', '', time()-300,'/');
     return true;
@@ -122,7 +118,7 @@ class Account{
       echo $e->getMessage();
     }
   }
- // 계정의 필드 리스트 불러오기 함수 - 어드민 제외
+ // 계정 리스트 불러오기 함수 - 어드민 제외
   public function GetAccountList()
   {
     try
@@ -131,6 +127,22 @@ class Account{
       $stmt->execute();
       $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
       return $result;
+    }
+    catch(PODException $e)
+    {
+      echo $e->getMessage();
+    }
+  }
+  // 계정 고유 id 불러오기
+  public function GetUserId($username)
+  {
+    try
+    {
+      $stmt = $this->db->prepare("SELECT id FROM Account WHERE username = :username");
+      $stmt->bindParam(':username',$username);
+      $stmt->execute();
+      $result = $stmt->fetchAll(PDO::FETCH_COLUMN);
+      return $result[0];
     }
     catch(PODException $e)
     {

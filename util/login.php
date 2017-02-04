@@ -11,13 +11,13 @@ if(isset($_POST['user_id']) && isset($_POST['user_password']))
   $username = $_POST['user_id'];
   $password = $_POST['user_password'];
 
-  $permission = $Account->login($username,$password);
+  $result = $Account->login($username,$password);
 
-  if($permission === 'normal')
+  if($result === 'normal')
   {
     echo "success";
   }
-  else if($permission === 'admin')
+  else if($result === 'admin')
   {
     echo "admin access";
   }

@@ -1,4 +1,4 @@
-$db_host=127.0.0.1;
-$db_user=root;
-$db_password=123123;
-$db_dbname=test;
+$db_host = 127.0.0.1;
+$db_user = root;
+$db_password = 123123;
+$db_dbname = test;
