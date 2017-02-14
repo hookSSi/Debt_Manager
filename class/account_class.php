@@ -102,7 +102,7 @@ class Account{
     return true;
   }
   // 계정 삭제
-  public function deleteAccount($username)
+  public function DeleteAccount($username)
   {
     try
     {
@@ -111,7 +111,7 @@ class Account{
       $stmt->execute();
 
 
-      return $result;
+      return true;
     }
     catch(PODException $e)
     {

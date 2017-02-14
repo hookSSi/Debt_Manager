@@ -22,9 +22,9 @@ class DB_Manager{
 
       for($i = 0; $i < count($setting); $i++)
       {
-        $param = explode($list, '=');
+        $param = explode('=',$list);
 
-        $setting[$i] = chop($param[1]);
+        $setting[$i] = ltrim($param[1]);
 
         $list = strtok(';');
       }

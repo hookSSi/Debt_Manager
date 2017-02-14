@@ -14,23 +14,27 @@ $user_password = $_COOKIE['user_password'];
 		<meta charset="utf-8">
 		<title>클라이언트 페이지</title>
 		<style>
-			@import url("./css/client-page.css");
+			@import url("./css/client-page.css?ver=3");
 		</style>
 	</head>
 	<body>
-		<div class="top-banner">
+		<div class = "top-banner">
 			<?php
 				echo("<h1>어서오세요 ($user_name)님</h1>");
 			 ?>
-			 <a href = "./util/logout.php">로그아웃</a>
+			 <a href = "./util/logout.php" style = "padding:40px;">로그아웃</a>
+			 <a href = "#" class = "close" style = "font-size:4rem;">x</a>
 		</div>
 		<nav class = "top-menu-list">
-			<a href="#"><i class = "fa fa-bars" aria-hidden="true"></i></a>
+			<a href="#"><i class = "icon fa fa-bars fa-3x" aria-hidden="true"></i></a>
 		</nav>
 		<div class="wrapper">
 			<div class="container">
-					<form>
-						<h3 style="text-align:center;">한글 입력 불가능</h5>
+					<h1>Welcome to SINABRO</h1>
+					<div class = "subhead">
+						쉽고 재밌게 호의를 주고 받으세요!
+					</div>
+					<form style = "display:flex; flex-direction:row;">
 						<input type = "text" id = 'group_name' name = 'group_name' size = "25" maxlength = "25" placeholder = "그룹이름" />
 						<button type = "create" action = "./util/create-group.php" id = "create">만들기</button>
 						<button type = "sign-in" action = "./util/sign-in-group.php" id = "sign-in">참가</button>
@@ -62,6 +66,6 @@ $user_password = $_COOKIE['user_password'];
 		<!-- font-awesome -->
 		<script type = "text/javascript" src = "https://use.fontawesome.com/4295d946d8.js"></script>
 		<!-- 자바스크립트 부분 -->
-	  <script type = "text/javascript" src = "./js/client-page.js"></script>
+	  <script type = "text/javascript" src = "./js/client-page.js?ver=3"></script>
 	</body>
 </html>

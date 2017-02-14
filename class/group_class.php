@@ -104,5 +104,22 @@ class Group{
       return false;
     }
   }
+  // 삭제하기
+  public function DeleteGroup($groupName)
+  {
+    try
+    {
+      $stmt = $this->db->prepare("DELETE * FROM Account WHERE permission != :groupName");
+      $stmt->bindParam(':groupName', $groupName);
+      $stmt->execute();
+
+
+      return true;
+    }
+    catch(PODException $e)
+    {
+      echo $e->getMessage();
+    }
+  }
 }
  ?>

@@ -1,1 +1,27 @@
 @import url(./normal-style.css);
+/*폰트*/
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css);
+
+
+.top-banner{
+  border: 2px solid black;
+  display: none;
+  flex-direction: row;
+}
+
+a:link
+{ color: white;
+  text-decoration: none;
+}
+a:visited
+{ color: white;
+  text-decoration: none;
+}
+a:hover
+{
+  color: white;
+  text-decoration: none;
+}
+a:hover {
+opacity: 0.6;
+}
