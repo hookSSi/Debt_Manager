@@ -6,13 +6,17 @@ $db_manager = new DB_Manager();
 
 $Account = new Account($db_manager->pdo);
 
-if(isset($_POST['user_id']) && isset($_POST['user_password']) && isset($_POST['user_email']))
+$error[] = "";
+
+if(isset($_POST['user_id']) && isset($_POST['user_password']) &&
+   isset($_POST['username']) && isset($_POST['user_email']))
 {
-  $username = $_POST['user_id'];
+  $user_id = $_POST['user_id'];
   $password = $_POST['user_password'];
+  $username = $_POST['username'];
   $email = $_POST['user_email'];
 
-  if($username == ""){
+  if($user_id == ""){
     $error[] = "아이디를 입력하세요.";
   }
   else if($password == ""){
@@ -24,18 +28,18 @@ if(isset($_POST['user_id']) && isset($_POST['user_password']) && isset($_POST['u
   else {
     try
     {
-      $stmt = $db_manager->pdo->prepare("SELECT username, email FROM Account WHERE username = :username OR email = :email");
-      $stmt->execute(array(':username' => $username, ':email' => $email));
+      $stmt = $db_manager->pdo->prepare("SELECT user_id, email FROM Account WHERE user_id = :user_id OR email = :email");
+      $stmt->execute(array(':user_id' => $user_id, ':email' => $email));
       $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-      if($row['username'] == $username){
+      if($row['user_id'] == $user_id){
         $error[] = "이미 같은 아이디가 존재합니다.";
       }
       else if($row['email'] == $email){
         $error[] = "이미 같은 이메일이 존재합니다.";
       }
       else {
-        if($Account->register($username, $password, $email)){
+        if($Account->register($user_id, $password, $username, $email)){
           echo "success";
         }
       }

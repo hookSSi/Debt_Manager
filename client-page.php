@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <meta charset="utf-8" />
 <?php
-if(!isset($_COOKIE['user_name']) || !isset($_COOKIE['user_password']) || !isset($_COOKIE['user_permission'])) {
+if(!isset($_COOKIE['user_id']) || !isset($_COOKIE['user_password']) || !isset($_COOKIE['user_permission'])) {
 	header("Location: ./login-page.php");
 	exit;
 }
 
-$user_name = $_COOKIE['user_name'];
+$user_name = $_COOKIE['user_id'];
 $user_password = $_COOKIE['user_password'];
 ?>
 <html>

@@ -8,10 +8,10 @@ $Account = new Account($db_manager->pdo);
 
 if(isset($_POST['user_id']) && isset($_POST['user_password']))
 {
-  $username = $_POST['user_id'];
-  $password = $_POST['user_password'];
+  $user_id = $_POST['user_id'];
+  $user_password = $_POST['user_password'];
 
-  $result = $Account->login($username,$password);
+  $result = $Account->login($user_id, $user_password);
 
   if($result === 'normal')
   {

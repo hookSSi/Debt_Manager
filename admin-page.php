@@ -8,7 +8,7 @@
 	$AccountManager = new Account($database->pdo);
 	$GroupManager = new Group($database->pdo);
 
-	if(!isset($_COOKIE['user_name']) || !isset($_COOKIE['user_password']) || $_COOKIE['user_permission'] === 'normal')
+	if(!isset($_COOKIE['user_id']) || !isset($_COOKIE['user_password']) || $_COOKIE['user_permission'] === 'normal')
 	{
 		echo("
 		<script>
@@ -70,7 +70,7 @@
 															<div class = 'inner'>
 																<div class = 'li-image'><img src = '' alt = 'Image Not Found'></div>
 																	<div class = 'li-text'>
-																		<h4 class = 'li-head'>{$row['username']}</h4>
+																		<h4 class = 'li-head'>{$row['user_id']}</h4>
 																		<p class = 'li-contents'>{$row['email']}</p>
 																	</div>
 																	<a href ='#' class = 'li-button'>

@@ -31,6 +31,7 @@
 			 <form id = "signup-form" style = "display:none;" method = "POST" action = "./util/signup.php">
 				 <input type = "text" name = 'user_id_set'  id = 'user_id_set' size = "25" maxlength = "25" placeholder = "아이디" />
 				 <input type = "password" name = 'user_password_set' id = 'user_password_set' size = "25" maxlength = "25" placeholder = "비밀번호" />
+				 <input type = "username" name = 'username_set' id = 'username_set' size = "25" maxlength = "25" placeholder = "이름" />
 				 <input type = "email" name = 'user_email_set' id = 'user_email_set' size = "40" maxlength = "40" placeholder = "이메일" />
 				 <button type = "signup" id = "signup-button">회원가입</button>
 				 <button type = "toggle" class = "toggle">뒤로가기!</button>

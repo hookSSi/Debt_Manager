@@ -8,39 +8,50 @@ class Account{
   }
 
   // 회원가입 함수
-  public function register($username, $password, $email)
+  public function register($user_id, $user_password, $username, $email)
   {
     try
     {
-      $new_password = password_hash($password, PASSWORD_DEFAULT);
+      $new_password = password_hash($user_password, PASSWORD_DEFAULT);
 
-      $stmt = $this->db->prepare("INSERT INTO `Account` (`username`, `password`, `email`, `reg_date`)
-      VALUES(:username, :password, :email, now())");
+      $stmt = $this->db->prepare("INSERT INTO `Account`
+      (`id`,`user_id`, `username`, `user_password`, `email`, `reg_date`)
+      VALUES(:id, :user_id, :username, :user_password, :email, now())");
 
+      $id = md5($user_id);
+
+      $stmt->bindparam(":id",$id);
+      $stmt->bindparam(":user_id", $user_id);
       $stmt->bindparam(":username", $username);
-      $stmt->bindparam(":password", $new_password);
+      $stmt->bindparam(":user_password", $new_password);
       $stmt->bindparam(":email", $email);
       $stmt->execute();
 
-      return $stmt;
+      return true;
     }
     catch (Exception $e)
     {
       echo $e->getMessage();
+      return false;
     }
   }
   // 어드민 추가 함수
-  public function AddAdmin($username, $password, $email)
+  public function AddAdmin($user_id, $user_password, $username, $email)
   {
     try
     {
-      $new_password = password_hash($password, PASSWORD_DEFAULT);
+      $new_password = password_hash($user_password, PASSWORD_DEFAULT);
 
-      $stmt = $this->db->prepare("INSERT INTO `Account` (`username`, `password`, `email`, `permission`,`reg_date`)
-      VALUES(:username, :password, :email, 'admin',now())");
+      $stmt = $this->db->prepare("INSERT INTO `Account`
+      (`id`,`user_id`, `username`, `user_password`, `email`, `permission`, `reg_date`)
+      VALUES(:id, :user_id, :username, :user_password, :email, 'admin', now())");
 
+      $id = md5($user_id);
+
+      $stmt->bindparam(":id",$id);
+      $stmt->bindparam(":user_id", $user_id);
       $stmt->bindparam(":username", $username);
-      $stmt->bindparam(":password", $new_password);
+      $stmt->bindparam(":user_password", $new_password);
       $stmt->bindparam(":email", $email);
       $stmt->execute();
 
@@ -52,21 +63,21 @@ class Account{
     }
   }
   // 로그인 함수
-  public function login($username, $password)
+  public function login($user_id, $user_password)
   {
     try
     {
-      $stmt = $this->db->prepare("SELECT * FROM Account WHERE username=:username");
-      $stmt->bindParam(':username', $username);
+      $stmt = $this->db->prepare("SELECT * FROM Account WHERE user_id = :user_id");
+      $stmt->bindParam(':user_id', $user_id);
       $stmt->execute();
       $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
 
       if($stmt->rowCount() > 0)
       {
-        if(password_verify($password, $userRow['password']))
+        if(password_verify($user_password, $userRow['user_password']))
         {
-          setcookie('user_name',$userRow['username'],time()+(86400*30),'/');
-          setcookie('user_password',$userRow['password'],time()+(86400*30),'/');
+          setcookie('user_id',$userRow['user_id'],time()+(86400*30),'/');
+          setcookie('user_password',$userRow['user_password'],time()+(86400*30),'/');
           setcookie('user_permission', $userRow['permission'],time()+(86400*30),'/');
           return $userRow['permission'];
         }
@@ -96,20 +107,19 @@ class Account{
  // 로그아웃 함수
   public function logout()
   {
-    setcookie('user_name', '', time()-300,'/');
+    setcookie('user_id', '', time()-300,'/');
     setcookie('user_password', '', time()-300,'/');
     setcookie('user_permission', '', time()-300,'/');
     return true;
   }
   // 계정 삭제
-  public function DeleteAccount($username)
+  public function DeleteAccount($id)
   {
     try
     {
-      $stmt = $this->db->prepare("DELETE * FROM Account WHERE permission != :username");
-      $stmt->bindParam(':username', $username);
+      $stmt = $this->db->prepare("DELETE * FROM Account WHERE id = :id");
+      $stmt->bindParam(':id', $id);
       $stmt->execute();
-
 
       return true;
     }
@@ -134,12 +144,12 @@ class Account{
     }
   }
   // 계정 고유 id 불러오기
-  public function GetUserId($username)
+  public function GetUserId($user_id)
   {
     try
     {
-      $stmt = $this->db->prepare("SELECT id FROM Account WHERE username = :username");
-      $stmt->bindParam(':username',$username);
+      $stmt = $this->db->prepare("SELECT id FROM Account WHERE user_id = :user_id");
+      $stmt->bindParam(':user_id',$user_id);
       $stmt->execute();
       $result = $stmt->fetchAll(PDO::FETCH_COLUMN);
       return $result[0];

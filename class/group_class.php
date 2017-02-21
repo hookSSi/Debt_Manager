@@ -28,7 +28,25 @@ class Group{
       }
     }
     else
-      return false;
+    {
+      // 같은 이름이라면 #을 붙여서 만듬
+      try
+      {
+        $newGroupName = $groupName.GroupCount($groupName);
+
+        $stmt = $this->db->prepare("INSERT INTO `Group` (`groupName`, `peopleCount`, `create_date`)
+        VALUES(:groupName, 0, now())");
+        $stmt->bindparam(":groupName", $newGroupName);
+        $stmt->execute();
+
+        return $stmt;
+      }
+      catch (PODException $e)
+      {
+        echo $e->getMessage();
+        return false;
+      }
+    }
   }
   // 참가신청 보내기
   public function SendRequestJoin($groupName)
@@ -70,6 +88,25 @@ class Group{
 
     return $isValid;
   }
+
+  public function GroupCount($groupName)
+  {
+    try
+    {
+      $stmt = $this->db->prepare("SELECT `groupName` FROM `Group` WHERE `groupName`=:groupName");
+      $stmt->bindParam(':groupName', $groupName);
+      $stmt->execute();
+      $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    catch (PODException $e)
+    {
+      echo $e->getMessage();
+      return 0;
+    }
+
+    return count($result);
+  }
+
   // 그룹 리스트 불러오기
   public function GetGroupList()
   {
@@ -86,33 +123,14 @@ class Group{
       return false;
     }
   }
-  // 유저 id와 관련된 그룹 불러오기
-  public function GetGroupListByUserId($user_id)
-  {
-    try
-    {
-      $stmt = $this->db->prepare("SELECT * FROM `Group`, `UserInfo`
-        WHERE  `UserInfo.id` = :user_id AND `UserInfo.groupid` = `Group.groupid`");
-      $stmt->bindParam(':user_id', $user_id);
-      $stmt->execute();
-      $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-      return $result;
-    }
-    catch(PODException $e)
-    {
-      echo $e->getMessage();
-      return false;
-    }
-  }
   // 삭제하기
   public function DeleteGroup($groupName)
   {
     try
     {
-      $stmt = $this->db->prepare("DELETE * FROM Account WHERE permission != :groupName");
+      $stmt = $this->db->prepare("DELETE * FROM Account WHERE groupName = :groupName");
       $stmt->bindParam(':groupName', $groupName);
       $stmt->execute();
-
 
       return true;
     }

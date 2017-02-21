@@ -12,7 +12,8 @@
 
   $adminName = "admin";
   $password = "1stmit-games*^^*";
+  $username = "admin";
   $email = "sounghoo12@gmail.com";
 
-  $Account->AddAdmin($adminName, $password, $email);
+  $Account->AddAdmin($adminName, $password, $username,$email);
 ?>

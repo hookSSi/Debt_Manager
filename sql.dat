@@ -4,38 +4,49 @@ DROP TABLE IF EXISTS `UserInfo`
 -----
 DROP TABLE IF EXISTS `Group`
 -----
-DROP TABLE IF EXISTS `MoneyStatus`
+DROP TABLE IF EXISTS `Finance`
 -----
 CREATE TABLE IF NOT EXISTS `Account`(
-id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-username VARCHAR(30) NOT NULL,
-password VARCHAR(65) NOT NULL,
-email VARCHAR(50),
+id VARCHAR(65) NOT NULL,
+user_id VARCHAR(30) NOT NULL,
+user_password VARCHAR(65) NOT NULL,
+username VARCHAR(10) NOT NULL,
+email VARCHAR(50) NOT NULL,
 permission VARCHAR(10) DEFAULT 'normal',
-reg_date TIMESTAMP,
-UNIQUE (`username`),
-UNIQUE (`email`),
-UNIQUE (`id`)
-)
------
-CREATE TABLE IF NOT EXISTS `UserInfo`(
-id INT(10) UNSIGNED,
-firstname VARCHAR(30) NOT NULL,
-lastname VARCHAR(30) NOT NULL,
-position VARCHAR(30) DEFAULT 'user',
-money INT(10) DEFAULT '0',
-groupid INT(10) UNSIGNED
+reg_date DATETIME,
+PRIMARY KEY(id),
+UNIQUE(user_ID),
+UNIQUE(email)
 )
 -----
 CREATE TABLE IF NOT EXISTS `Group`(
-groupid INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+groupid VARCHAR(65),
 groupName VARCHAR(60) NOT NULL,
 peopleCount INT(10) UNSIGNED,
-create_date TIMESTAMP,
-UNIQUE(`groupid`),
-UNIQUE(`groupName`)
+create_date DATETIME,
+UNIQUE(`groupName`),
+PRIMARY KEY(groupid)
 )
 -----
-CREATE TABLE IF NOT EXISTS `MoneyStatus`(
-status INT(1)
+CREATE TABLE IF NOT EXISTS `UserInfo`(
+id VARCHAR(65) NOT NULL,
+groupid VARCHAR(65) NOT NULL,
+name VARCHAR(30) NOT NULL,
+self_introduce VARCHAR(200),
+image_url mediumblob NOT NULL,
+position_in_group VARCHAR(10) DEFAULT 'user',
+join_date DATETIME,
+PRIMARY KEY(id, groupid)
+)
+-----
+CREATE TABLE IF NOT EXISTS `Finance`(
+id VARCHAR(65) NOT NULL,
+groupid VARCHAR(65) NOT NULL,
+lend_money INT(15) DEFAULT '0',
+lend_last_date DATETIME,
+rent_money INT(15) DEFAULT '0',
+rent_last_date DATETIME,
+payback_money INT(15) DEFAULT '0',
+payback_last_date DATETIME,
+PRIMARY KEY(id, groupid)
 )

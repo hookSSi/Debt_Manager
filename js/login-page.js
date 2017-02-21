@@ -21,7 +21,7 @@ jQuery(document).ready(function(){
               TextOutLoadPage(" Welcome Admin!","./admin-page.php#t1",true,1000);
             }
             else{
-              TextOutLoadPage("Login Fail",'./login-page.php', false, 1000);
+              TextOutLoadPage("Login Fail " + response,'./login-page.php', false, 1000);
             }
           },2000); // 로그인 지연
         },
@@ -42,6 +42,7 @@ jQuery(document).ready(function(){
     {
       user_id: $("#user_id_set").val(),
       user_password: $("#user_password_set").val(),
+      username: $("#username_set").val(),
       user_email: $("#user_email_set").val(),
       is_ajax: 1
     };
@@ -53,7 +54,7 @@ jQuery(document).ready(function(){
         setTimeout(function(){
           $('#loading').hide();
           if(response == 'success'){
-            TextOutLoadPage($("#user_id").val() + " Signup Success!","./client-page.php",true,1000);
+            TextOutLoadPage($("#user_id_set").val() + " Signup Success!","./client-page.php",true,1000);
           }
           else{
             TextOutLoadPage("Signup Fail\n"+response, "./login-page.php", false,1000);
