@@ -1,14 +1,17 @@
 jQuery(document).ready(function(){
-
-
     // 탑 알림 배너
     jQuery(".close").click(function(){
       $(".close").parent().slideUp(500);
     });
 
-    $(".top-banner").slideDown("slow",function(){
+    jQuery(".top-banner").slideDown("slow",function(){
       $(".top-banner").css("display","flex");
     });
+
+    // 메뉴
+    jQuery(".dropdown").click(function(){
+      $(".dropdown-content").slideToggle(500);
+    })
 
     // 그룹 만들기
    jQuery("#create").click(function(event){

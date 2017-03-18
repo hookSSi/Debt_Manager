@@ -1,9 +1,14 @@
 /*폰트*/
-@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css?ver=1);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css);
 
 a, form,.top-banner, .top-menu-list, .footer{
     position: relative;
     z-index: 999;
+}
+
+
+ul{
+  list-style-type: none;
 }
 
 .wrapper {
@@ -53,20 +58,18 @@ body :-ms-input-placeholder {
   font-weight: 300;
 }
 
-a:link
-{ color: white;
-  text-decoration: none;
-}
-a:visited
-{ color: white;
-  text-decoration: none;
-}
-a:hover
-{
+a:link{
   color: white;
   text-decoration: none;
 }
-a:hover {
+a:visited{ color: white;
+  text-decoration: none;
+}
+a:hover{
+  color: white;
+  text-decoration: none;
+}
+a:hover{
 opacity: 0.6;
 }
 

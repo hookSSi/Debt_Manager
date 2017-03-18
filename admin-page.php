@@ -145,7 +145,7 @@
 	</div>
 
 	<!-- jQuery -->
-  <script type = "text/javascript" src = "https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.0.min.js"></script>
+  <script type = "text/javascript" src = "./js/jquery-1.11.0.min.js"></script>
 	<!-- font-awesome -->
 	<script type = "text/javascript" src = "https://use.fontawesome.com/4295d946d8.js"></script>
 	<!-- 자바스크립트 부분 -->
