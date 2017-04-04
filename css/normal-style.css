@@ -1,5 +1,7 @@
 /*폰트*/
-@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css);
+link{
+  display: none;
+}
 
 a, form,.top-banner, .top-menu-list, .footer{
     position: relative;

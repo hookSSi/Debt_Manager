@@ -20,11 +20,17 @@ UNIQUE(email)
 )
 -----
 CREATE TABLE IF NOT EXISTS `Group`(
-groupid VARCHAR(65),
+groupid VARCHAR(65) NOT NULL,
 groupName VARCHAR(60) NOT NULL,
 peopleCount INT(10) UNSIGNED,
 create_date DATETIME,
 UNIQUE(`groupName`),
+PRIMARY KEY(groupid)
+)
+-----
+CREATE TABLE IF NOT EXISTS `Group_Setting`(
+groupid VARCHAR(65) NOT NULL,
+isOpen BOOLEAN DEFAULT 'TRUE',
 PRIMARY KEY(groupid)
 )
 -----

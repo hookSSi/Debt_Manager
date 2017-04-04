@@ -2,7 +2,7 @@
   require_once("./class/db_class.php");
   require_once("./class/account_class.php");
 
-  $db_manager = new DB_Manager();
+  $db_manager = new DB_Manager(true);
 
   $sql_query_address = './sql.dat';
 

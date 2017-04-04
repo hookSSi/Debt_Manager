@@ -8,7 +8,7 @@ class DB_Manager{
   public $pdo; // PDO 클래스
 
   // 생성자
-  function __construct($isFile = true, $db_host = '127.0.0.1', $db_user = 'root', $db_password = '123123', $db_dbname = 'test')
+  function __construct($isFile = true, $db_host = '127.0.0.1', $db_user = 'root', $db_password = 'ab4202', $db_dbname = 'test')
   {
     $settingfile = "localhost\Debt_Manager\setting.dat";
 

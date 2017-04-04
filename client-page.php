@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<meta charset="utf-8" />
 <?php
 $isLoggedin = false;
 
@@ -17,10 +16,19 @@ else {
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>클라이언트 페이지</title>
-		<style>
-			@import url("./css/client-page.css?ver=1");
-		</style>
+		<?php
+			if($isLoggedin){
+				echo("<title>SINABRO - ");
+				echo($user_name."님 환영합니다.</title>");
+			}
+			else{
+				echo("<title>SINABRO</title>");
+			}
+
+		 ?>
+		 <link rel="stylesheet" type="text/css" href="./css/font-awesome.css">
+		 <link rel= "stylesheet" type="text/css" href ="./css/normal-style.css?ver=1">
+		 <link rel = "stylesheet" type="text/css" href = "./css/client-page.css?ver=1">
 	</head>
 	<body>
 		<div class = "wrapper">
@@ -29,9 +37,7 @@ else {
 					<div class = "top-banner">
 						<?php
 							if($isLoggedin){
-								echo("<h1>어서오세요 ($user_name)님</h1>");
-								echo(
-							 "<a href = '#' class = 'close' style = 'font-size:4rem;'>x</a>");
+								echo("<h1>어서오세요 ($user_name)님 <a href = '#' class = 'close' style = 'font-size:3rem;'>x</a></h1>");
 							}
 						 ?>
 					</div>
@@ -72,7 +78,7 @@ else {
 					<div id = "subject">
 						<h1>
 							Welcome to SINABRO
-							<img src ="./image/logo.png" width="105" height ="105" alt ="ERROR" />
+							<img src ="./image/money.gif" width="105" height ="105" alt ="ERROR" />
 						</h1>
 						<div class = "subhead">
 							<p style ="text-align:center;">
@@ -81,13 +87,21 @@ else {
 						</div>
 					</div>
 					<form id = "group-form">
-						<input type = "text" id = 'group-name' name = 'group_name' size = "25" maxlength = "25" placeholder = "그룹이름" />
-						<button type = "create" action = "./util/create-group.php" id = "create">만들기</button>
-						<button type = "sign-in" action = "./util/sign-in-group.php" id = "sign-in">참가</button>
+						<input type = "text" id = 'group-name' name = 'group-name' size = "25" maxlength = "25" placeholder = "그룹이름" />
+						<?php
+						if($isLoggedin){
+							echo('<button type = "create" action = "./util/create-group.php" id = "create" class = "group-form-button">만들기</button>
+							<button type = "sign-in" action = "./util/sign-in-group.php" id = "sign-in" class = "group-form-button">참가</button>');
+						}
+						else{
+							echo('<button type = "create" id = "login" class = "group-form-button"><a href = "./login-page.php" style = "color:#53e3a6">만들기</a></button>
+							<button type = "sign-in" id = "login" class = "group-form-button"><a href = "./login-page.php" style = "color:#53e3a6">참가</a></button>');
+						}
+						?>
 					</form>
-					<nav class = "bottom-menu-list">
+					<div id = "client_page_svg_wrapper">
 
-					</nav>
+					</div>
 				</div>
 				<div class="footer">
 					<div class = "menu-list">

@@ -11,14 +11,14 @@ jQuery(document).ready(function(){
     // 메뉴
     jQuery(".dropdown").click(function(){
       $(".dropdown-content").slideToggle(500);
-    })
+    });
 
     // 그룹 만들기
    jQuery("#create").click(function(event){
      var action = $("#create").attr('action');
      var form_data =
      {
-       groupName: $("#group_name").val(),
+       groupName: $("#group-name").val(),
        is_ajax: 1
      };
      jQuery.ajax({
@@ -28,12 +28,8 @@ jQuery(document).ready(function(){
        success: function(response){
          setTimeout(function(){
            $('#loading').hide();
-           if(response !== false){
-              alert(response);
-           }
-           else{
-              alert(response);
-           }
+
+           location.href="../inside-group-page.php";
          },2000);
        },
        beforeSend:function(){
@@ -45,13 +41,14 @@ jQuery(document).ready(function(){
      });
      return false;
    });
+
    // 그룹 찾아 들어가기
    jQuery("#sign-in").click(function(event){
 
        var action = $("#sign-in").attr('action');
        var form_data =
        {
-         groupName: $("#group_name").val(),
+         groupName: $("#group-name").val(),
          is_ajax: 1
        };
        jQuery.ajax({
@@ -61,12 +58,8 @@ jQuery(document).ready(function(){
          success: function(response){
            setTimeout(function(){
              $('#loading').hide();
-             if(response !== false){
-                alert(response);
-             }
-             else{
-                alert(response);
-             }
+
+             location.href="#";
            },2000);
          },
          beforeSend:function(){

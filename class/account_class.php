@@ -65,6 +65,8 @@ class Account{
   // 로그인 함수
   public function login($user_id, $user_password)
   {
+    $userRow = null;
+
     try
     {
       $stmt = $this->db->prepare("SELECT * FROM Account WHERE user_id = :user_id");
@@ -79,17 +81,17 @@ class Account{
           setcookie('user_id',$userRow['user_id'],time()+(86400*30),'/');
           setcookie('user_password',$userRow['user_password'],time()+(86400*30),'/');
           setcookie('user_permission', $userRow['permission'],time()+(86400*30),'/');
-          return $userRow['permission'];
+          return $userRow;
         }
       }
       $this->logout();
-      return "error";
     }
     catch(PODException $e)
     {
       $this->logout();
       echo $e->getMessage();
     }
+    return $userRow;
   }
   // 로그인 확인 함수
   public function is_loggedin()

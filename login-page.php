@@ -10,11 +10,9 @@
 	<title>로그인 페이지</title>
 	<meta charset="utf-8" />
 
-	<!-- CSS 부분 -->
-	<style>
-		@import url("./css/login-page.css");
-		@import url("./css/box-loading.css");
-	</style>
+	<link rel="stylesheet" type="text/css" href="./css/font-awesome-google.css">
+	<link rel="stylesheet" type="text/css" href="./css/login-page.css">
+	<link rel="stylesheet" type="text/css" href="./css/box-loading.css">s
 </head>
 
 <body>

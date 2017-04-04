@@ -23,11 +23,11 @@
 	<title>관리자 페이지</title>
 	<meta charset="utf-8" />
 
-  <!-- CSS 부분 -->
-	<style type = "text/css">
-		@import url("./css/admin-page.css");
-		@import url("./css/image_and_list.css");
-	</style>
+	<link rel="stylesheet" type="text/css" href="./css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="./css/loader.css">
+	<link rel="stylesheet" type="text/css" href="./css/normal-style.css">
+	<link rel="stylesheet" type="text/css" href ="./css/admin-page.css">
+	<link rel="stylesheet" type="text/css" href ="./css/image_and_list.css">
 </head>
 
 <body>

@@ -14,8 +14,12 @@ class Group{
     {
       try
       {
-        $stmt = $this->db->prepare("INSERT INTO `Group` (`groupName`, `peopleCount`, `create_date`)
-        VALUES(:groupName, 0, now())");
+        $stmt = $this->db->prepare("INSERT INTO `Group`
+          (`groupid`, `groupName`, `peopleCount`, `create_date`)
+         VALUES(:groupid, :groupName, 0, now())");
+        $groupid = md5($groupName);
+
+        $stmt->bindparam(":groupid", $groupid);
         $stmt->bindparam(":groupName", $groupName);
         $stmt->execute();
 
@@ -23,8 +27,7 @@ class Group{
       }
       catch (PODException $e)
       {
-        echo $e->getMessage();
-        return false;
+        return $e->getMessage();
       }
     }
     else
@@ -32,10 +35,14 @@ class Group{
       // 같은 이름이라면 #을 붙여서 만듬
       try
       {
-        $newGroupName = $groupName.GroupCount($groupName);
+        $newGroupName = $groupName.'#'.$this->GroupCount($groupName);
 
-        $stmt = $this->db->prepare("INSERT INTO `Group` (`groupName`, `peopleCount`, `create_date`)
-        VALUES(:groupName, 0, now())");
+        $stmt = $this->db->prepare("INSERT INTO `Group`
+          (`groupid`,`groupName`, `peopleCount`, `create_date`)
+        VALUES(:groupid,:groupName, 0, now())");
+        $groupid = md5($newGroupName);
+
+        $stmt->bindparam(":groupid", $groupid);
         $stmt->bindparam(":groupName", $newGroupName);
         $stmt->execute();
 
@@ -43,11 +50,11 @@ class Group{
       }
       catch (PODException $e)
       {
-        echo $e->getMessage();
-        return false;
+        return $e->getMessage();
       }
     }
   }
+
   // 참가신청 보내기
   public function SendRequestJoin($groupName)
   {
@@ -68,10 +75,11 @@ class Group{
   // false: 그룹이름이 현재 존재함
   public function IsVaildGroupName($groupName)
   {
-    $isValid = true;
+    $isValid = false;
+
     try
     {
-      $stmt = $this->db->prepare("SELECT `groupName` FROM `Group` WHERE `groupName`=:groupName");
+      $stmt = $this->db->prepare("SELECT * FROM `Group` WHERE `groupName` LIKE CONCAT(:groupName,'%')");
       $stmt->bindParam(':groupName', $groupName);
       $stmt->execute();
       $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -79,21 +87,23 @@ class Group{
     catch (PODException $e)
     {
       echo $e->getMessage();
-      $isValid = false;
+
       return $isValid;
     }
 
-    if(count($result) > 0)
-      $isValid = false;
+    if(count($result) == 0)
+      $isValid = true;
 
     return $isValid;
   }
 
   public function GroupCount($groupName)
   {
+    $count = 0;
+
     try
     {
-      $stmt = $this->db->prepare("SELECT `groupName` FROM `Group` WHERE `groupName`=:groupName");
+      $stmt = $this->db->prepare("SELECT * FROM `Group` WHERE `groupName` LIKE CONCAT(:groupName,'%')");
       $stmt->bindParam(':groupName', $groupName);
       $stmt->execute();
       $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -101,10 +111,12 @@ class Group{
     catch (PODException $e)
     {
       echo $e->getMessage();
-      return 0;
+      return "error";
     }
 
-    return count($result);
+    $count = count($result);
+
+    return $count;
   }
 
   // 그룹 리스트 불러오기
@@ -120,7 +132,6 @@ class Group{
     catch(PODException $e)
     {
       echo $e->getMessage();
-      return false;
     }
   }
   // 삭제하기

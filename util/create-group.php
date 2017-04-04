@@ -6,13 +6,15 @@ $db_manager = new DB_Manager();
 
 $Group = new Group($db_manager->pdo);
 
+$result = $_POST['groupName'];
+
 if(isset($_POST['groupName']))
 {
   $groupName = $_POST['groupName'];
 
   $result = $Group->CreateGroup($groupName);
-
-  echo $result;
 }
+
+echo(count($result));
 
 ?>
