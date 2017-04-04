@@ -53,6 +53,7 @@ jQuery(document).ready(function(){
               alert("데이터베이스가 리셋 되었습니다!");
             }
             else{
+              $(".loader").remove();
               alert("요청한 수행이 실패했습니다! 축하드립니다!");
             }
           },

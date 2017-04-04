@@ -10,7 +10,10 @@ class DB_Manager{
   // 생성자
   function __construct($isFile = true, $db_host = '127.0.0.1', $db_user = 'root', $db_password = 'ab4202', $db_dbname = 'test')
   {
-    $settingfile = "localhost\Debt_Manager\setting.dat";
+    $file_server_path = realpath(__FILE__);
+    $server_path = str_replace(basename(__FILE__), "", $file_server_path);
+
+    $settingfile = $server_path."setting.dat";
 
     if(file_exists($settingfile) && $isFile)
     {
@@ -45,6 +48,26 @@ class DB_Manager{
     $this->pdo = new PDO('mysql:host='.$this->db_host.';dbname='.$this->db_dbname.';charset=utf8', $this->db_user, $this->db_password);
 
     $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+
+    // 테이블 전체 삭제 퀴리문
+    $query = ("
+    SET @tables = NULL;
+    SELECT GROUP_CONCAT(table_schema, '.', table_name) INTO @tables
+    FROM information_schema.tables
+    WHERE table_schema = '".$this->db_dbname."'; -- specify DB name here.
+    SET @tables = CONCAT('DROP TABLE ', @tables);
+    PREPARE stmt FROM @tables;
+    EXECUTE stmt;
+    DEALLOCATE PREPARE stmt;
+    ");
+
+    try{
+      $this->pdo->exec($query);
+    }
+    catch(Exception $e){
+      echo $e->getMessage();
+    }
   }
   // 퀴리 실행 함수
   function execQuery($query)

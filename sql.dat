@@ -1,11 +1,3 @@
-DROP TABLE IF EXISTS `Account`
------
-DROP TABLE IF EXISTS `UserInfo`
------
-DROP TABLE IF EXISTS `Group`
------
-DROP TABLE IF EXISTS `Finance`
------
 CREATE TABLE IF NOT EXISTS `Account`(
 id VARCHAR(65) NOT NULL,
 user_id VARCHAR(30) NOT NULL,
@@ -30,7 +22,7 @@ PRIMARY KEY(groupid)
 -----
 CREATE TABLE IF NOT EXISTS `Group_Setting`(
 groupid VARCHAR(65) NOT NULL,
-isOpen BOOLEAN DEFAULT 'TRUE',
+isOpen BOOLEAN DEFAULT true,
 PRIMARY KEY(groupid)
 )
 -----
