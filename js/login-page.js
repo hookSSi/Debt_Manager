@@ -54,7 +54,7 @@ jQuery(document).ready(function(){
         setTimeout(function(){
           $('#loading').hide();
           if(response == 'success'){
-            TextOutLoadPage($("#user_id_set").val() + " Signup Success!","./client-page.php",true,1000);
+            TextOutLoadPage($("#user_id_set").val() + " Signup Success!","./login-page.php",true,1000);
           }
           else{
             TextOutLoadPage("Signup Fail\n"+response, "./login-page.php", false,1000);

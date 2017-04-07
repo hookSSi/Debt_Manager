@@ -29,7 +29,7 @@ jQuery(document).ready(function(){
          setTimeout(function(){
            $('#loading').hide();
 
-           location.href="../inside-group-page.php";
+           location.href="./inside-group-page.php";
          },2000);
        },
        beforeSend:function(){
@@ -42,8 +42,27 @@ jQuery(document).ready(function(){
      return false;
    });
 
-   // 그룹 찾아 들어가기
-   jQuery("#sign-in").click(function(event){
+   // 그룹 찾기
+   jQuery("#search-group").click(function(){
+      $("#overlay").fadeIn(1000);
+      $(".popupContainer").fadeIn(1000);
+      $(".popupContainer").css("animation-name","popupAnimation");
+
+      var groupName = $("#group-name").val();
+      $("#group-name-to-search").val(groupName);
+      // top:100,
+      // overlay:0.6,
+      // closeButton: ".window-close"
+   });
+
+   jQuery("#overlay").click(function(){
+     $("#overlay").fadeOut(1000);
+     $(".popupContainer").fadeOut(1000);
+     $(".popupContainer").css("animation-name","");
+   });
+
+   // 그룹 들어가기
+   jQuery(".sign-in").click(function(event){
 
        var action = $("#sign-in").attr('action');
        var form_data =

@@ -1,5 +1,23 @@
 <?php
-class DB_Manager{
+class Singleton
+{
+  public static function getInstance()
+  {
+    static $instance = null;
+    if(null === $instance){
+      $instance = new static();
+    }
+
+    return $instance;
+  }
+
+  protected function __construct(){}
+  private function __clone(){}
+  private function __wakeup(){}
+}
+
+
+class DB_Manager extends Singleton{
 
   private $db_host; // DB 주소
   private $db_user; // DB 관리자 아이디
@@ -8,7 +26,7 @@ class DB_Manager{
   public $pdo; // PDO 클래스
 
   // 생성자
-  function __construct($isFile = true, $db_host = '127.0.0.1', $db_user = 'root', $db_password = 'ab4202', $db_dbname = 'test')
+  protected function __construct($isFile = true, $db_host = '127.0.0.1', $db_user = 'root', $db_password = 'ab4202', $db_dbname = 'test')
   {
     $file_server_path = realpath(__FILE__);
     $server_path = str_replace(basename(__FILE__), "", $file_server_path);
@@ -48,8 +66,10 @@ class DB_Manager{
     $this->pdo = new PDO('mysql:host='.$this->db_host.';dbname='.$this->db_dbname.';charset=utf8', $this->db_user, $this->db_password);
 
     $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  }
 
-
+  function resetDB()
+  {
     // 테이블 전체 삭제 퀴리문
     $query = ("
     SET @tables = NULL;
@@ -69,6 +89,7 @@ class DB_Manager{
       echo $e->getMessage();
     }
   }
+
   // 퀴리 실행 함수
   function execQuery($query)
   {

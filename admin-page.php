@@ -1,12 +1,10 @@
 <? //관리자 페이지 파일 ?>
 <?php
-	require_once('./class/db_class.php');
 	require_once('./class/account_class.php');
 	require_once('./class/group_class.php');
 
-	$database = new DB_Manager();
-	$AccountManager = new Account($database->pdo);
-	$GroupManager = new Group($database->pdo);
+	$AccountManager = new Account();
+	$GroupManager = new Group();
 
 	if(!isset($_COOKIE['user_id']) || !isset($_COOKIE['user_password']) || $_COOKIE['user_permission'] === 'normal')
 	{

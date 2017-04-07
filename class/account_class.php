@@ -1,10 +1,12 @@
 <?php
+require_once("db_class.php");
+
 class Account{
   private $db;
 
-  function __construct($db)
+  function __construct()
   {
-    $this->db = $db;
+    $this->db = DB_Manager::getInstance()->pdo;
   }
 
   // 회원가입 함수
@@ -69,6 +71,8 @@ class Account{
 
     try
     {
+      $this->logout();
+
       $stmt = $this->db->prepare("SELECT * FROM Account WHERE user_id = :user_id");
       $stmt->bindParam(':user_id', $user_id);
       $stmt->execute();
@@ -84,7 +88,6 @@ class Account{
           return $userRow;
         }
       }
-      $this->logout();
     }
     catch(PODException $e)
     {
@@ -153,8 +156,8 @@ class Account{
       $stmt = $this->db->prepare("SELECT id FROM Account WHERE user_id = :user_id");
       $stmt->bindParam(':user_id',$user_id);
       $stmt->execute();
-      $result = $stmt->fetchAll(PDO::FETCH_COLUMN);
-      return $result[0];
+      $result = $stmt->fetchColumn();
+      return $result;
     }
     catch(PODException $e)
     {

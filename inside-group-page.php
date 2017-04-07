@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <?php
-require_once("./class/db_class.php");
 require_once("./class/account_class.php");
+require_once("./class/userinfo_class.php");
 
 $isLoggedin = false;
 $userRow = null;
 
 if(isset($_COOKIE['user_id']) && isset($_COOKIE['user_password']) && isset($_COOKIE['user_permission'])) {
-  $db_manager = new DB_Manager();
-
-  $Account = new Account($db_manager->pdo);
+  $Account = new Account();
 
   $userRow = $Account->login($_COOKIE['user_id'], $_COOKIE['user_password']);
 
@@ -18,6 +16,9 @@ if(isset($_COOKIE['user_id']) && isset($_COOKIE['user_password']) && isset($_COO
   }
   else if($userRow['permission'] === 'normal' || $userRow['permission'] === 'admin'){
     $isLoggedin = true;
+    setcookie('user_id',$userRow['user_id'],time()+(86400*30),'/');
+    setcookie('user_password',$userRow['user_password'],time()+(86400*30),'/');
+    setcookie('user_permission', $userRow['permission'],time()+(86400*30),'/');
   }
 }
 ?>

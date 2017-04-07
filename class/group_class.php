@@ -1,10 +1,11 @@
 <?php
+require_once("db_class.php");
 class Group{
   private $db;
 
-  function __construct($db)
+  function __construct()
   {
-    $this->db = $db;
+    $this->db = DB_Manager::getInstance()->pdo;
   }
 
   // 그룹 만들기 함수
@@ -23,7 +24,7 @@ class Group{
         $stmt->bindparam(":groupName", $groupName);
         $stmt->execute();
 
-        return $stmt;
+        return $groupid;
       }
       catch (PODException $e)
       {
@@ -46,7 +47,7 @@ class Group{
         $stmt->bindparam(":groupName", $newGroupName);
         $stmt->execute();
 
-        return $stmt;
+        return $groupid;
       }
       catch (PODException $e)
       {
@@ -54,7 +55,6 @@ class Group{
       }
     }
   }
-
   // 참가신청 보내기
   public function SendRequestJoin($groupName)
   {
@@ -125,6 +125,22 @@ class Group{
     try
     {
       $stmt = $this->db->prepare("SELECT * FROM `Group`");
+      $stmt->execute();
+      $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      return $result;
+    }
+    catch(PODException $e)
+    {
+      echo $e->getMessage();
+    }
+  }
+
+  public function GetGroupListByName($groupName)
+  {
+    try
+    {
+      $stmt = $this->db->prepare("SELECT * FROM `Group` WHERE `groupName` LIKE CONCAT(:groupName,'%')");
+      $stmt->bindParam(':groupName', $groupName);
       $stmt->execute();
       $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
       return $result;

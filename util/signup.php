@@ -2,9 +2,9 @@
 require_once("../class/db_class.php");
 require_once("../class/account_class.php");
 
-$db_manager = new DB_Manager();
+$db_manager = DB_Manager::getInstance();
 
-$Account = new Account($db_manager->pdo);
+$Account = new Account();
 
 $error[] = "";
 
