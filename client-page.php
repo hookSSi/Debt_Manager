@@ -42,7 +42,8 @@ if(isset($_COOKIE['user_id']) && isset($_COOKIE['user_password']) && isset($_COO
 		 ?>
 		 <link rel="stylesheet" type="text/css" href="./css/font-awesome.css">
 		 <link rel= "stylesheet" type="text/css" href ="./css/normal-style.css?ver=0">
-		 <link rel = "stylesheet" type="text/css" href = "./css/client-page.css?ver=0">
+		 <link rel = "stylesheet" type="text/css" href = "./css/client-page.css?ver=1">
+     <link rel = "stylesheet" type="text/css" href = "./css/loader.css?ver=0">
 	</head>
 	<body>
 		<div class = "wrapper">
@@ -52,7 +53,7 @@ if(isset($_COOKIE['user_id']) && isset($_COOKIE['user_password']) && isset($_COO
 					<div class = "top-banner">
 						 <?php
 							if($isLogin){
-								echo("<h1>어서오세요 (".$user_name.")님 <a href = '#' class = 'close' style = 'font-size:3rem;'>x</a></h1>");
+								echo("<h1>어서오세요 (".$user_name.")님 <a href = '#' class = 'banner-close' style = 'font-size:3rem;'>x</a></h1>");
 							}
 						 ?>
 					</div>
@@ -106,7 +107,10 @@ if(isset($_COOKIE['user_id']) && isset($_COOKIE['user_password']) && isset($_COO
 					<!-- 그룹이름 입력 폼 -->
 					<form id = "group-form">
 						<input type = "text" id = 'group-name' name = 'group-name' size = "25" maxlength = "25" placeholder = "그룹이름" />
-						<?php
+            <div id = "loading" style = "display:none;">
+              <span class = 'loader loader-quart'></span>
+            </div>
+            <?php
 						if($isLogin){
 							echo('<button type = "create" action = "./util/create-group.php" id = "create" class = "group-form-button">만들기</button>
 							<button input type = "button" id = "search-group" class = "group-form-button">찾기</button>');
@@ -143,32 +147,36 @@ if(isset($_COOKIE['user_id']) && isset($_COOKIE['user_password']) && isset($_COO
       </ul>
 		</div>
 		<!-- 검색창 -->
-		<div class="popupContainer" id = "search-group-window">
-			<header class = "popupHeader">
-				<span class = 'header_title'>들어갈 그룹찾기</span>
-			</header>
-			<section class = "popupBody">
-				<form class="search-form" action="index.html" method="get">
-					<input type = "text" id = 'group-name-to-search' name = 'group-name' size = "25" maxlength= "25" placeholder= "그룹이름"/>
-				</form>
-				<ul class = "group-list">
-					<li><a href="#">그룹1</a></li>
-					<li><a href="#">그룹2</a></li>
-					<li><a href="#">그룹3</a></li>
-					<?php
-					if($isLogin)
-					{
-						$groupRow = $GroupManager->GetGroupList();
-					}
-					?>
-				</ul>
-			</section>
+		<div class="popupContainer" id = "search-group-window" >
+      <div class = "insideContainer" id="inside-search-group-window" style = "overflow-y:auto;">
+        <header class = "popupHeader">
+  				<span class = 'header_title'>들어갈 그룹찾기</span>
+  			</header>
+  			<section class = "popupBody">
+  				<form class="search-form" action="index.html" method="get">
+  					<input type = "text" id = 'group-name-to-search' name = 'group-name' size = "25" maxlength= "25" placeholder= "그룹이름"/>
+            <button input type = "button2" id = 'sign-in'>참가</button>
+          </form>
+          <div id ="list-wrapper">
+            <ul class = "group-list" id = "group-list">
+              <li><a href="#"><img src="#" alt="image not found"><div>그룹1</div></a></li>
+              <li><a href="#"><img src="#" alt="image not found"><div>그룹2</div></a></li>
+              <li><a href="#"><img src="#" alt="image not found"><div>그룹3</div></a></li>
+              <li><a href="#"><img src="#" alt="image not found"><div>그룹4</div></a></li>
+              <li><a href="#"><img src="#" alt="image not found"><div>그룹5</div></a></li>
+              <li><a href="#"><img src="#" alt="image not found"><div>그룹6</div></a></li>
+              <li><a href="#"><img src="#" alt="image not found"><div>그룹7</div></a></li>
+    				</ul>
+            <div class = "loaderContainer" style = "margin-left: 50%; display:none;">
+              <span class = 'loader loader-quart' style = "margin-left: -25px"></span>
+            </div>
+          </div>
+  			</section>
+      </div>
 		</div>
 		<div id="overlay"></div>
 		<!-- jQuery -->
 	  <script type = "text/javascript" src = "./js/jquery-1.11.0.min.js"></script>
-		<!-- jQuery lean Model -->
-		<script type = "text/javascript" src = "./js/jquery.leanModal.min.js"></script>
 		<!-- font-awesome -->
 		<script type = "text/javascript" src = "https://use.fontawesome.com/4295d946d8.js"></script>
 		<!-- 자바스크립트 부분 -->

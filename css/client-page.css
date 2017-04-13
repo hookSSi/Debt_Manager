@@ -126,6 +126,10 @@ opacity: 0.6;
 }
 
 .popupContainer{
+    display: none;
+}
+
+.popupContainer, .insideContainer{
   position: absolute;
   border: 1px solid white;
   left: 50%;
@@ -138,7 +142,6 @@ opacity: 0.6;
   color: black;
   z-index: 10;
   animation-duration: 1s;
-  display: none;
 }
 
 @keyframes popupAnimation {
@@ -168,6 +171,10 @@ opacity: 0.6;
   margin: 10px;
 }
 
+.search-form{
+  display: flex;
+}
+
 .group-list{
   display: block;
 }
@@ -181,5 +188,14 @@ opacity: 0.6;
 
 .group-list>li>a{
   width: 100%;
-  display: block;
+  display: flex;
+  min-height: 100px;
+}
+
+.group-list>li>a>img{
+  flex-basis: 30%;
+}
+
+.group-list>li>a>div{
+  flex-basis: 70%;
 }

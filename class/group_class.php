@@ -150,6 +150,57 @@ class Group{
       echo $e->getMessage();
     }
   }
+
+  public function GetGroupListByName2($groupName, $count)
+  {
+    $start = 0;
+    $start = intval($start);
+    $limit = intval($count);
+    try
+    {
+      $stmt = $this->db->prepare("SELECT * FROM `Group`
+        WHERE `groupName` LIKE CONCAT(:groupName,'%')
+        ORDER BY `groupName` ASC LIMIT :start, :count
+        ");
+      $stmt->bindParam(':groupName', $groupName);
+      $stmt->bindParam(':start', $start, PDO::PARAM_INT);
+      $stmt->bindParam(':count', $limit, PDO::PARAM_INT);
+      $stmt->execute();
+      $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      return $result;
+    }
+    catch(PODException $e)
+    {
+      echo $e->getMessage();
+    }
+  }
+
+  public function GetGroupListByName3($groupName, $lastName, $count)
+  {
+    $start = 0;
+    $start = intval($start);
+    $limit = intval($count);
+    try
+    {
+      $stmt = $this->db->prepare("SELECT * FROM `Group`
+        WHERE groupName LIKE CONCAT(:groupName,'%') AND groupName > :lastGroupName
+        ORDER BY `groupName` ASC LIMIT :start, :count
+        ");
+
+      $stmt->bindParam(':groupName', $groupName);
+      $stmt->bindParam(':lastGroupName', $lastName);
+      $stmt->bindParam(':start', $start, PDO::PARAM_INT);
+      $stmt->bindParam(':count', $limit, PDO::PARAM_INT);
+      $stmt->execute();
+      $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      return $result;
+    }
+    catch(PODException $e)
+    {
+      echo $e->getMessage();
+    }
+  }
+
   // 삭제하기
   public function DeleteGroup($groupName)
   {
