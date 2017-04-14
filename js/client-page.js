@@ -175,14 +175,24 @@ jQuery(document).ready(function(){
      return false;
    });
 
+   // 그룹 리스트 클릭
+   jQuery(document).on("click",".group-list-element",function(event){
+        var groupName = $(this).children('div').text();
+        var groupListDoc = $("#group-list");
+        $("#group-name-to-search").val(groupName);
 
-   // 그룹 들어가기
-   jQuery(".sign-in").click(function(event){
+        FirstLoad(groupListDoc,groupName,5);
 
-       var action = $("#sign-in").attr('action');
+        return false;
+   });
+
+  // 그룹 들어가기
+   jQuery("#sign-in").click(function(event){
+
+       var action = "./util/sign-in-group.php"
        var form_data =
        {
-         groupName: $("#group-name").val(),
+         groupName: $("#group-name-to-search").val(),
          is_ajax: 1
        };
        jQuery.ajax({
@@ -191,15 +201,13 @@ jQuery(document).ready(function(){
          data: form_data,
          success: function(response){
            setTimeout(function(){
-             $('#loading').hide();
+             $('#overlay2').hide();
 
              location.href="#";
            },2000);
          },
          beforeSend:function(){
-            //  $('h1').text("");
-            //  $('form').fadeOut(500);
-            //  $('#loading').addClass("boxLoading");
+            $('#overlay2').show();
          },
          timeout:100000
        });

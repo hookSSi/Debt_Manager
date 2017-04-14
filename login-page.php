@@ -12,7 +12,7 @@
 
 	<link rel="stylesheet" type="text/css" href="./css/font-awesome-google.css">
 	<link rel="stylesheet" type="text/css" href="./css/login-page.css">
-	<link rel="stylesheet" type="text/css" href="./css/box-loading.css">s
+	<link rel="stylesheet" type="text/css" href="./css/box-loading.css">
 </head>
 
 <body>

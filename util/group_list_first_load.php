@@ -18,7 +18,7 @@ if(isset($_POST['keyword']) && isset($_POST['list_count'])){
     if(count($result) > 0){
       foreach ($result as $row)
       {
-        $str .= "<li><a href='#'>"."<img src='#' alt='image not found'><div>".$row['groupName']."</div></a></li>";
+        $str .= "<li><a href='#' class = 'group-list-element'>"."<img src='#' alt='image not found'><div>".$row['groupName']."</div></a></li>";
       }
       echo($str);
     }

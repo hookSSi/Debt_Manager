@@ -44,6 +44,7 @@ if(isset($_COOKIE['user_id']) && isset($_COOKIE['user_password']) && isset($_COO
 		 <link rel= "stylesheet" type="text/css" href ="./css/normal-style.css?ver=0">
 		 <link rel = "stylesheet" type="text/css" href = "./css/client-page.css?ver=1">
      <link rel = "stylesheet" type="text/css" href = "./css/loader.css?ver=0">
+     <link rel="stylesheet" type="text/css" href="./css/box-loading.css">
 	</head>
 	<body>
 		<div class = "wrapper">
@@ -175,6 +176,9 @@ if(isset($_COOKIE['user_id']) && isset($_COOKIE['user_password']) && isset($_COO
       </div>
 		</div>
 		<div id="overlay"></div>
+    <div id="overlay2">
+        <div id = "loading" class = "boxLoading"></div>
+    </div>
 		<!-- jQuery -->
 	  <script type = "text/javascript" src = "./js/jquery-1.11.0.min.js"></script>
 		<!-- font-awesome -->

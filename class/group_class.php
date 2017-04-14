@@ -150,7 +150,8 @@ class Group{
       echo $e->getMessage();
     }
   }
-
+  
+  // 처음 불러올때
   public function GetGroupListByName2($groupName, $count)
   {
     $start = 0;
@@ -175,6 +176,7 @@ class Group{
     }
   }
 
+  // 좀 더 불러올때
   public function GetGroupListByName3($groupName, $lastName, $count)
   {
     $start = 0;
