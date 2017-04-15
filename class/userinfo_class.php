@@ -36,13 +36,32 @@ class UserInfo{
                                     WHERE `groupid` = :groupid " );
         $stmt3->bindparam(":groupid", $groupid);
         $stmt3->execute();
+
+        $stmt4 = $this->db->prepare("SELECT `groupName`
+                                     FROM `Group`
+                                     WHERE `groupid` = :groupid ");
+        $stmt4->bindparam(":groupid", $groupid);
+        $stmt4->execute();
+        $groupName = $stmt4->fetchColumn();
+
+        setcookie('groupName', $groupName, time()+(86400*30),'/');
+        echo("success");
       }
       else {
-        echo("유저정보 생성 실패!");
+        echo("fail to generate userinfo");
       }
     }
     else{
-      echo("이미 참가된 그룹");
+      $stmt4 = $this->db->prepare("SELECT `groupName`
+                                   FROM `Group`
+                                   WHERE `groupid` = :groupid ");
+      $stmt4->bindparam(":groupid", $groupid);
+      $stmt4->execute();
+      $groupName = $stmt4->fetchColumn();
+
+      setcookie('groupName', $groupName, time()+(86400*30),'/');
+
+      echo("you already in");
     }
   }
 
@@ -72,6 +91,32 @@ class UserInfo{
     }
 
     return false;
+  }
+
+  public function GetUserInfo($id, $groupid)
+  {
+
+  }
+
+  public function GetUserInfoList($id)
+  {
+    try
+    {
+      $stmt = $this->db->prepare("SELECT * FROM `Userinfo` WHERE `id` = :id");
+      $stmt->bindParam(':id', $id);
+      $stmt->execute();
+      $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      return $result;
+    }
+    catch(PODException $e)
+    {
+      echo $e->getMessage();
+    }
+  }
+
+  public function GetUserInfoList2($groupid)
+  {
+
   }
 }
  ?>

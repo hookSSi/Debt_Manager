@@ -119,6 +119,22 @@ class Group{
     return $count;
   }
 
+  public function GetGroupId($groupName)
+  {
+    try
+    {
+      $stmt = $this->db->prepare("SELECT groupid FROM `Group` WHERE `groupName` = :groupName");
+      $stmt->bindParam(':groupName', $groupName);
+      $stmt->execute();
+      $result = $stmt->fetchColumn();
+      return $result;
+    }
+    catch(PODException $e)
+    {
+      echo $e->getMessage();
+    }
+  }
+
   // 그룹 리스트 불러오기
   public function GetGroupList()
   {
@@ -150,7 +166,7 @@ class Group{
       echo $e->getMessage();
     }
   }
-  
+
   // 처음 불러올때
   public function GetGroupListByName2($groupName, $count)
   {

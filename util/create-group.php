@@ -22,8 +22,6 @@ if(isset($_POST['groupName'])){
     $UserInfo = new UserInfo();
 
     $UserInfo->JoinGroup($id, $groupid);
-
-    echo "success";
   }
 }
 else {

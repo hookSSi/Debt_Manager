@@ -182,8 +182,6 @@ jQuery(document).ready(function(){
         $("#group-name-to-search").val(groupName);
 
         FirstLoad(groupListDoc,groupName,5);
-
-        return false;
    });
 
   // 그룹 들어가기
@@ -200,11 +198,29 @@ jQuery(document).ready(function(){
          url: action,
          data: form_data,
          success: function(response){
-           setTimeout(function(){
-             $('#overlay2').hide();
-
-             location.href="#";
-           },2000);
+           if(response == "fail to generate userinfo"){
+             setTimeout(function(){
+               $('#overlay2').hide();
+               alert("유저 정보를 생성하는데 실패했습니다.");
+             },2000);
+           }
+           else if(response == "you already in"){
+             setTimeout(function(){
+               location.href="./inside-group-page.php";
+             },2000);
+           }
+           else if(response == "success"){
+             alert("그룹 참가 완료!");
+             setTimeout(function(){
+               location.href="./inside-group-page.php";
+             },2000);
+           }
+           else {
+             setTimeout(function(){
+               $('#overlay2').hide();
+               alert(response);
+             },2000);
+           }
          },
          beforeSend:function(){
             $('#overlay2').show();
