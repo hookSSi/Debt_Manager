@@ -1,3 +1,5 @@
+//document.domain = "https://sinabro.com/login";
+
 jQuery(document).ready(function(){
   // 로그인
   jQuery("#login-button").click(function(event){

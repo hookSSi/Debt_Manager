@@ -1,4 +1,4 @@
-
+//document.domain = "https://sinabro.com/admin";
 
 jQuery(document).ready(function(){
 

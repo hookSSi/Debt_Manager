@@ -48,3 +48,10 @@ payback_money INT(15) DEFAULT '0',
 payback_last_date DATETIME,
 PRIMARY KEY(id, groupid)
 )
+-----
+CREATE TABLE IF NOT EXISTS `BATCH`(
+'id' int(11) unsigned NOT NULL AUTO_INCREMENT,
+'job_name' varchar(50) NOT NULL,
+'context' text NOT NULL,
+PRIMARY KEY('id')
+)ENGINE = InnoDB DEFAULT CHARSET=utf8

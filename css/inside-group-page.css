@@ -1,0 +1,95 @@
+.wrapper .container .header {
+  height: 30%;
+  width: 100%; }
+.wrapper .container .center {
+  display: block;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  height: 60%;
+  width: 100%;
+  display: flex; }
+.wrapper .container .footer {
+  height: 10%;
+  width: 100%; }
+
+#option-container {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 30%;
+  height: 100%;
+  border: 1px solid black; }
+  #option-container #option-wrapper {
+    margin-left: 300px;
+    margin-top: 100px; }
+
+#option-wrapper #option-button {
+  position: absolute;
+  color: white;
+  transition: transform 0.3s, top 0.3s;
+  z-index: 6; }
+  #option-wrapper #option-button:hover {
+    cursor: pointer; }
+#option-wrapper #option-menu {
+  position: absolute;
+  z-index: 5;
+  display: none;
+  transition: all 1s ease-in-out; }
+
+#line {
+  width: 40%;
+  height: 100%;
+  border: 1px solid black; }
+
+#name-list-container {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 30%;
+  height: 100%;
+  border: 1px solid black; }
+
+.menuitem-wrapper {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  transition: transform 0.3s;
+  float: center; }
+  .menuitem-wrapper:nth-child(1) {
+    transform: rotate(0deg) translateX(-110px); }
+    .menuitem-wrapper:nth-child(1) .circle-holder {
+      transform: rotate(0deg); }
+  .menuitem-wrapper:nth-child(2) {
+    transform: rotate(115deg) translateX(-110px); }
+    .menuitem-wrapper:nth-child(2) .circle-holder {
+      transform: rotate(-115deg); }
+  .menuitem-wrapper:nth-child(3) {
+    transform: rotate(230deg) translateX(-110px); }
+    .menuitem-wrapper:nth-child(3) .circle-holder {
+      transform: rotate(-230deg); }
+
+.circle-holder {
+  border-radius: 50%;
+  background-color: rgba(240, 255, 255, 0.4);
+  text-align: center;
+  width: 80px;
+  height: 80px; }
+  .circle-holder:hover {
+    cursor: pointer;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+    color: white;
+    background: rgba(255, 255, 255, 0.3); }
+  .circle-holder a {
+    display: inline-block;
+    padding: 1em; }
+
+/*# sourceMappingURL=inside-group-page.css.map */

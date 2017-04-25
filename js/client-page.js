@@ -1,3 +1,5 @@
+//document.domain = "https://sinabro.com";
+
 jQuery(document).ready(function(){
     // 탑 알림 배너
     jQuery(".banner-close").click(function(event){
