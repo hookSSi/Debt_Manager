@@ -2,6 +2,7 @@
 require_once("../class/group_class.php");
 require_once("../class/account_class.php");
 require_once("../class/userinfo_class.php");
+require_once("../class/finance_class.php");
 require_once("../class/common_function.php");
 
 $Group = new Group();
@@ -22,6 +23,10 @@ if(isset($_POST['groupName'])){
     $UserInfo = new UserInfo();
 
     $UserInfo->JoinGroup($id, $groupid);
+
+    $Finance = new Finance();
+
+    $Finance->CreateFinance($id, $groupid);
   }
 }
 else {

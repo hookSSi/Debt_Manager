@@ -73,37 +73,66 @@ if(isset($_COOKIE['user_id']) &&
               <ul id = "option-menu">
                 <li class = "menuitem-wrapper">
                   <div class="icon-holder circle-holder">
-                    <a href="#빌리기">
-                        <i class="icon fa fa-plus fa-3x" airia-hidden = "true"></i>
+                    <a class = "util-button" href="#빌리기">
+                        <i class="icon fa fa-money fa-3x" airia-hidden = "true"></i>
                     </a>
                   </div>
                 </li>
                 <li class = "menuitem-wrapper">
                   <div class="icon-holder circle-holder">
-                    <a href="#갚기">
-                      <i class="icon fa fa-plus fa-3x" airia-hidden = "true"></i>
+                    <a class = "util-button" href="#갚기">
+                      <i class="icon fa fa-smile-o fa-3x" airia-hidden = "true"></i>
                     </a>
                   </div>
                 </li>
                 <li class = "menuitem-wrapper">
                   <div class="icon-holder circle-holder">
-                    <a href="#이모티콘">
-                      <i class="icon fa fa-plus fa-3x" airia-hidden = "true"></i>
+                    <a class = "util-button" href="#이모티콘">
+                      <i class="icon fa fa-rss fa-3x" airia-hidden = "true"></i>
                     </a>
                   </div>
                 </li>
               </ul>
             </div>
           </div>
-          <div id = "line">
-
+          <div id = "record-container">
+            <div id ="record-wrapper">
+              <div id="record-window">
+                <div class = "message_content">
+                  <div class = "message_content_header"><img src="./image/temp.jpg" alt=""></div>
+                  <div class="message_content_body">
+                    <span class = "userId">아이디</span>
+                    <span class = "message_body">메시지</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div id ="name-list-container">
-            <ul class = "name-list">
-              <li>이름</li>
-              <li>이름</li>
-              <li>이름</li>
-            </ul>
+            <div id = "name-list-wrapper">
+              <div id ="name-list-window">
+                <ul class = "name-list">
+                  <li>이름</li>
+                  <li>이름</li>
+                  <li>이름</li>
+                  <li>이름</li>
+                  <li>이름</li>
+                  <li>이름</li>
+                  <li>이름</li>
+                  <li>이름</li>
+                  <li>이름</li>
+                  <li>이름</li>
+                  <li>이름</li>
+                  <li>이름</li>
+                  <li>이름</li>
+                  <li>이름</li>
+                  <li>이름</li>
+                  <li>이름</li>
+                  <li>이름</li>
+                  <li>이름</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
         <div class="footer">

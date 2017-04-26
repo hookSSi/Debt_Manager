@@ -66,7 +66,7 @@ class UserInfo{
   }
 
   // 유저정보 생성
-  public function CreateUserInfo($id, $groupid, $name)
+  private function CreateUserInfo($id, $groupid, $name)
   {
     try
     {

@@ -6,6 +6,7 @@ username VARCHAR(10) NOT NULL,
 email VARCHAR(50) NOT NULL,
 permission VARCHAR(10) DEFAULT 'normal',
 reg_date DATETIME,
+last_active_date DATETIME,
 PRIMARY KEY(id),
 UNIQUE(user_ID),
 UNIQUE(email)
@@ -40,18 +41,23 @@ PRIMARY KEY(id, groupid)
 CREATE TABLE IF NOT EXISTS `Finance`(
 id VARCHAR(65) NOT NULL,
 groupid VARCHAR(65) NOT NULL,
-lend_money INT(15) DEFAULT '0',
-lend_last_date DATETIME,
-rent_money INT(15) DEFAULT '0',
-rent_last_date DATETIME,
-payback_money INT(15) DEFAULT '0',
-payback_last_date DATETIME,
-PRIMARY KEY(id, groupid)
+financeid INT(11) unsigned NOT NULL AUTO_INCREMENT,
+total_money INT(15) DEFAULT '0',
+PRIMARY KEY(id, groupid, financeid),
+UNIQUE(financeid)
+)
+-----
+CREATE TABLE IF NOT EXISTS `Finance_Record`(
+financeid INT(11) NOT NULL,
+money INT(10) DEFAULT '0',
+date DATETIME,
+type VARCHAR(10) NOT NULL,
+PRIMARY KEY(financeid)
 )
 -----
 CREATE TABLE IF NOT EXISTS `BATCH`(
-'id' int(11) unsigned NOT NULL AUTO_INCREMENT,
-'job_name' varchar(50) NOT NULL,
-'context' text NOT NULL,
-PRIMARY KEY('id')
-)ENGINE = InnoDB DEFAULT CHARSET=utf8
+id int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+job_name VARCHAR(50) NOT NULL,
+context TEXT NOT NULL,
+PRIMARY KEY(id)
+)

@@ -17,8 +17,8 @@ class Account{
       $new_password = password_hash($user_password, PASSWORD_DEFAULT);
 
       $stmt = $this->db->prepare("INSERT INTO `Account`
-      (`id`,`user_id`, `username`, `user_password`, `email`, `reg_date`)
-      VALUES(:id, :user_id, :username, :user_password, :email, now())");
+      (`id`,`user_id`, `username`, `user_password`, `email`, `reg_date`, `last_active_date`)
+      VALUES(:id, :user_id, :username, :user_password, :email, now(), now())");
 
       $id = md5($user_id);
 
@@ -45,8 +45,8 @@ class Account{
       $new_password = password_hash($user_password, PASSWORD_DEFAULT);
 
       $stmt = $this->db->prepare("INSERT INTO `Account`
-      (`id`,`user_id`, `username`, `user_password`, `email`, `permission`, `reg_date`)
-      VALUES(:id, :user_id, :username, :user_password, :email, 'admin', now())");
+      (`id`,`user_id`, `username`, `user_password`, `email`, `permission`, `reg_date`, `last_active_date`)
+      VALUES(:id, :user_id, :username, :user_password, :email, 'admin', now(), now())");
 
       $id = md5($user_id);
 

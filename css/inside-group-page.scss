@@ -35,6 +35,11 @@ $item-transition: 0.5s;
   border: 1px solid black;
 }
 
+@mixin Getfull{
+  width: 100%;
+  height: 100%;
+}
+
 .wrapper{
   .container{
     .header{
@@ -65,8 +70,8 @@ $item-transition: 0.5s;
   @include debug_size;
 
   #option-wrapper{
-    margin-left: 300px;
-    margin-top: 100px;
+    margin-left: 50%;
+    margin-top: 30%;
   }
 }
 
@@ -90,21 +95,73 @@ $item-transition: 0.5s;
   }
 }
 
-#line{
+#record-container{
   width: 40%;
   height: 100%;
   @include debug_size;
+
+  #record-wrapper{
+    @include debug_size;
+
+    #record-window{
+      background-color: white;
+      @include Getfull;
+    }
+  }
+}
+
+.message_content{
+  padding: 10px;
+  color: black;
+  overflow-y: auto;
+  display: flex;
+
+  .message_content_header{
+    width: 80px;
+    height: 80px;
+    text-align: justify;
+
+    img{
+      width: 80px;
+      height: 80px;
+    }
+  }
+
+  .message_content_body{
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
 }
 
 #name-list-container{
+  display: none;
+  margin-left: auto;
   position: relative;
   top:0;
   bottom: 0;
   right: 0;
   left: 0;
-  width: 30%;
+  width: 0%;
   height: 100%;
   @include debug_size;
+
+  #name-list-wrapper{
+      @include Getfull;
+    #name-list-window{
+      @include Getfull;
+      overflow-y: auto;
+    }
+  }
+}
+
+.name-list{
+  li{
+    height: 50px;
+    width: 80px;
+    @include debug_size;
+  }
 }
 
 .menuitem-wrapper{

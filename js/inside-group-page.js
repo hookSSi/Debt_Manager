@@ -16,4 +16,15 @@ jQuery(document).ready(function(){
 
       return false;
   });
+
+  var iconButton = $(".util-button");
+  var nameListContainer = $("#name-list-container");
+
+  iconButton.click(function(event){
+    nameListContainer.fadeIn();
+    nameListContainer.animate({width: '30%'});
+
+    return false;
+  });
+
 });

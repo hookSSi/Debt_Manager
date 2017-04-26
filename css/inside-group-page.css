@@ -25,8 +25,8 @@
   height: 100%;
   border: 1px solid black; }
   #option-container #option-wrapper {
-    margin-left: 300px;
-    margin-top: 100px; }
+    margin-left: 50%;
+    margin-top: 30%; }
 
 #option-wrapper #option-button {
   position: absolute;
@@ -41,19 +41,56 @@
   display: none;
   transition: all 1s ease-in-out; }
 
-#line {
+#record-container {
   width: 40%;
   height: 100%;
   border: 1px solid black; }
+  #record-container #record-wrapper {
+    border: 1px solid black; }
+    #record-container #record-wrapper #record-window {
+      background-color: white;
+      width: 100%;
+      height: 100%; }
+
+.message_content {
+  padding: 10px;
+  color: black;
+  overflow-y: auto;
+  display: flex; }
+  .message_content .message_content_header {
+    width: 80px;
+    height: 80px;
+    text-align: justify; }
+    .message_content .message_content_header img {
+      width: 80px;
+      height: 80px; }
+  .message_content .message_content_body {
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column; }
 
 #name-list-container {
+  display: none;
+  margin-left: auto;
   position: relative;
   top: 0;
   bottom: 0;
   right: 0;
   left: 0;
-  width: 30%;
+  width: 0%;
   height: 100%;
+  border: 1px solid black; }
+  #name-list-container #name-list-wrapper {
+    width: 100%;
+    height: 100%; }
+    #name-list-container #name-list-wrapper #name-list-window {
+      width: 100%;
+      height: 100%;
+      overflow-y: auto; }
+
+.name-list li {
+  height: 50px;
+  width: 80px;
   border: 1px solid black; }
 
 .menuitem-wrapper {
