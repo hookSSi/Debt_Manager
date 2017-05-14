@@ -13,6 +13,7 @@
 	<link rel="stylesheet" type="text/css" href="./css/font-awesome-google.css">
 	<link rel="stylesheet" type="text/css" href="./css/login-page.css">
 	<link rel="stylesheet" type="text/css" href="./css/box-loading.css">
+	<script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 
 <body>
@@ -31,6 +32,7 @@
 				 <input type = "password" name = 'user_password_set' id = 'user_password_set' size = "25" maxlength = "25" placeholder = "비밀번호" />
 				 <input type = "username" name = 'username_set' id = 'username_set' size = "25" maxlength = "25" placeholder = "이름" />
 				 <input type = "email" name = 'user_email_set' id = 'user_email_set' size = "40" maxlength = "40" placeholder = "이메일" />
+				 <div class="g-recaptcha" data-sitekey="6Le97h4UAAAAAMohT7ml7Mc-k46my0HxgDcSkMuO"></div>
 				 <button type = "signup" id = "signup-button">회원가입</button>
 				 <button type = "toggle" class = "toggle">뒤로가기!</button>
 			 </form>

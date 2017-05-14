@@ -73,21 +73,21 @@ if(isset($_COOKIE['user_id']) &&
               <ul id = "option-menu">
                 <li class = "menuitem-wrapper">
                   <div class="icon-holder circle-holder">
-                    <a class = "util-button" href="#빌리기">
+                    <a class = "util-button" href="#돈">
                         <i class="icon fa fa-money fa-3x" airia-hidden = "true"></i>
                     </a>
                   </div>
                 </li>
                 <li class = "menuitem-wrapper">
                   <div class="icon-holder circle-holder">
-                    <a class = "util-button" href="#갚기">
+                    <a class = "util-button" href="#이모티콘">
                       <i class="icon fa fa-smile-o fa-3x" airia-hidden = "true"></i>
                     </a>
                   </div>
                 </li>
                 <li class = "menuitem-wrapper">
                   <div class="icon-holder circle-holder">
-                    <a class = "util-button" href="#이모티콘">
+                    <a class = "util-button" href="#알림">
                       <i class="icon fa fa-rss fa-3x" airia-hidden = "true"></i>
                     </a>
                   </div>
@@ -112,24 +112,7 @@ if(isset($_COOKIE['user_id']) &&
             <div id = "name-list-wrapper">
               <div id ="name-list-window">
                 <ul class = "name-list">
-                  <li>이름</li>
-                  <li>이름</li>
-                  <li>이름</li>
-                  <li>이름</li>
-                  <li>이름</li>
-                  <li>이름</li>
-                  <li>이름</li>
-                  <li>이름</li>
-                  <li>이름</li>
-                  <li>이름</li>
-                  <li>이름</li>
-                  <li>이름</li>
-                  <li>이름</li>
-                  <li>이름</li>
-                  <li>이름</li>
-                  <li>이름</li>
-                  <li>이름</li>
-                  <li>이름</li>
+                  <li class = "name-box">이름</li>
                 </ul>
               </div>
             </div>
@@ -139,6 +122,42 @@ if(isset($_COOKIE['user_id']) &&
 
         </div>
       </div>
+      <div class="popupContainer" id = "money-window" >
+        <div class = "insideContainer" id="inside-money-window" style = "overflow-y:auto;">
+          <header class = "popupHeader">
+    				<span class = 'header_title'>보낼 돈을 입력하세요</span>
+    			</header>
+    			<section class = "popupBody">
+    				<form class="send-form" action="index.html" method="get">
+    					<input type = "number" id = 'money-to-send' name = 'money-value' size = "25" maxlength= "25" placeholder= "그룹이름"/>
+              <button input type = "button" id = 'send-button'>보내기</button>
+            </form>
+    			</section>
+        </div>
+  		</div>
+      <div class="popupContainer" id = "emo-window" >
+        <div class = "insideContainer" id="inside-emo-window" style = "overflow-y:auto;">
+          <header class = "popupHeader">
+    				<span class = 'header_title'>보낼 이모티콘을 선택하세요.</span>
+    			</header>
+    			<section class = "popupBody">
+    				<form class="send-form" action="index.html" method="get">
+    					<div class="emo-holder">
+    					  <ul>
+    					    <li><div class="emo-box">1</div></li>
+                  <li><div class="emo-box">2</div></li>
+                  <li><div class="emo-box">3</div></li>
+                  <li><div class="emo-box">4</div></li>
+                  <li><div class="emo-box">5</div></li>
+                  <li><div class="emo-box">6</div></li>
+    					  </ul>
+    					</div>
+              <button input type = "button" id = 'send-button'>보내기</button>
+            </form>
+    			</section>
+        </div>
+  		</div>
+  		<div id="overlay"></div>
       <!-- jQuery -->
   	  <script type = "text/javascript" src = "./js/jquery-1.11.0.min.js"></script>
   		<!-- font-awesome -->

@@ -215,3 +215,11 @@ form button:hover {
     transform: translateY(-700px) rotate(600deg);
   }
 }
+
+.g-recaptcha {
+    padding: 10px 15px;
+}
+
+.g-recaptcha>div{
+  margin: auto;
+}
